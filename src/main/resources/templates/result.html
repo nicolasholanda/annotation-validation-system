@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Validation Result</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <h2>Validation Result</h2>
+        <div th:if="${success}" class="alert alert-success">
+            All fields are valid! Form submitted successfully.
+        </div>
+        <div th:if="${!success}" class="alert alert-danger">
+            <strong>Validation failed with the following errors:</strong>
+            <ul class="error-list">
+                <li th:each="error : ${errors}" th:text="${error.field + ': ' + error.message}"></li>
+            </ul>
+        </div>
+        <a th:href="${backUrl}" class="btn btn-outline">← Try again</a>
+        <a th:href="@{/}" class="back-link" style="margin-left: 16px;">Home</a>
+    </div>
+</div>
+</body>
+</html>
